@@ -6,8 +6,10 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
+EnvironmentFile=__DATA_DIR__/config/ocis.env
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/opencloud
+ExecStart=__INSTALL_DIR__/opencloud server
+Restart=always
 
 ### Depending on specificities of your service/app, you may need to tweak these
 ### .. but this should be a good baseline
