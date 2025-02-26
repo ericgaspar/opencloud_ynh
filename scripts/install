@@ -34,7 +34,7 @@ yunohost service add "$app" --description="File sharing platform" --log="/var/lo
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression "Adding $app's configuration..."
-
+mkdir $install_dir/config/
 ynh_config_add --template=".env" --destination="$install_dir/config/opencloud.env"
 
 #=================================================
@@ -46,8 +46,8 @@ pushd "$install_dir"
 	./opencloud init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/config/
 popd
 
-chmod 400 "$data_dir/config/opencloud.yaml"
-chown $app:$app "$data_dir/config/opencloud.yaml"
+chmod 400 "$install_dir/config/opencloud.yaml"
+chown $app:$app "$install_dir/config/opencloud.yaml"
 
 #=================================================
 # START SYSTEMD SERVICE
